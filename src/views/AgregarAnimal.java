@@ -54,7 +54,7 @@ public class AgregarAnimal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jTextFieldValorFIjo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jComboBoxEspecie = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
@@ -157,7 +157,7 @@ public class AgregarAnimal extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jTextFieldValorFIjo, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(107, 107, 107))))
         );
         layout.setVerticalGroup(
@@ -186,7 +186,7 @@ public class AgregarAnimal extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jComboBoxEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldValorFIjo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -204,6 +204,18 @@ public class AgregarAnimal extends javax.swing.JFrame {
 
     private void jComboBoxEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEspecieActionPerformed
 
+        String seleccion = (String)jComboBoxEspecie.getSelectedItem();
+        if (seleccion == null){
+            /*no hace nada*/
+        }else{
+        if(Controlador.CorrespondeValorFijo(seleccion) == true) {
+            jTextFieldValorFIjo.setEnabled(true);
+        } else {
+            jTextFieldValorFIjo.setEnabled(false);
+        }
+        this.revalidate();
+        this.repaint();
+        }
     }//GEN-LAST:event_jComboBoxEspecieActionPerformed
 
     private void jComboBoxEspecieItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxEspecieItemStateChanged
@@ -273,7 +285,7 @@ public class AgregarAnimal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextFieldValorFIjo;
     // End of variables declaration//GEN-END:variables
 }

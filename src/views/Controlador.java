@@ -17,6 +17,20 @@ public class Controlador {
     public static ArrayList<Sector> getSectores(){
         return Persistencia.getSectores();
     }
+    public static boolean CorrespondeValorFijo(String seleccion){
+          if (seleccion == null) {
+        return false;
+    }
+
+    for (Especie especie : Persistencia.getEspecies()) {
+        if (especie.getNombre().equalsIgnoreCase(seleccion)) {
+            return especie.getTipoAlimentacion().esHerbivoro();
+        }
+    }
+
+    System.out.println("No se encontró la especie con nombre: " + seleccion);
+    return false;
+    }
     
     public static ArrayList<AnimalViewModel> getAnimales(){
         ArrayList<AnimalViewModel> animales = new ArrayList<>();
