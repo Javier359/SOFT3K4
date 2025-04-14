@@ -6,6 +6,7 @@ import domain.*;
 import java.util.ArrayList;
 import java.util.InvalidPropertiesFormatException;
 import java.util.List;
+import java.util.Objects;
 
 public class Controlador {
     public static TipoAlimentacion[] getTiposAlimentacion(){
@@ -17,21 +18,39 @@ public class Controlador {
     public static ArrayList<Sector> getSectores(){
         return Persistencia.getSectores();
     }
+    public static ArrayList<Pais> getPaises(){
+        return Persistencia.getPaises();
+    }
+    
     public static boolean CorrespondeValorFijo(String seleccion){
-          if (seleccion == null) {
+        if (seleccion == null) {
         return false;
-    }
-
-    for (Especie especie : Persistencia.getEspecies()) {
-        if (especie.getNombre().equalsIgnoreCase(seleccion)) {
-            return especie.getTipoAlimentacion().esHerbivoro();
         }
-    }
 
-    System.out.println("No se encontró la especie con nombre: " + seleccion);
+        for (Especie especie : Persistencia.getEspecies()) {
+            if (especie.getNombre().equalsIgnoreCase(seleccion)) {
+                return especie.getTipoAlimentacion().esHerbivoro();
+            }
+        }
     return false;
     }
     
+    public static void cargarAnimal(int edad, double peso, String especie, String sector, String pais, double valorFijo) throws InvalidPropertiesFormatException{
+       
+        Especie es = Persistencia.buscarEspeciePorNombre(especie);
+        Pais p = Persistencia.buscarPaisPorNombre(pais);
+        Sector s = Persistencia.buscarSectorPorNumero(sector);
+           
+        /*logica*/
+       if(valorFijo == 0) {         
+        Carnivoro carnivoro = new Carnivoro(edad,peso,es,s,p);
+        Persistencia.agregarAnimal(carnivoro);
+    } else {
+        Herbivoro herbivoro = new Herbivoro(edad,peso,es,s,valorFijo,p);
+        Persistencia.agregarAnimal(herbivoro);
+    }
+    }
+        
     public static ArrayList<AnimalViewModel> getAnimales(){
         ArrayList<AnimalViewModel> animales = new ArrayList<>();
         for(Mamifero animal : Persistencia.getAnimales()){

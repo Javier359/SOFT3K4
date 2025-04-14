@@ -64,6 +64,34 @@ public class Persistencia {
     public static ArrayList<Pais> getPaises() {
         return paises;
     }
+    
+    public static void agregarAnimal(Mamifero mamifero){
+        animales.add(mamifero);       
+        System.out.println(mamifero);
+    }
+    
+    public static Especie buscarEspeciePorNombre(String nombre) {
+    for (Especie e : especies) {
+        if (e.getNombre().equalsIgnoreCase(nombre)) return e;
+    }
+    return null;
+}
+
+    public static Sector buscarSectorPorNumero(String numeroStr) {
+    int numero = Integer.parseInt(numeroStr); // convertir a int
+    for (Sector s : sectores) {
+        if (s.getNumero() == numero) return s;
+    }
+    return null;
+}
+
+    public static Pais buscarPaisPorNombre(String nombre) {
+        for (Pais p : paises) {
+            if (p.getNombre().equalsIgnoreCase(nombre)) return p;
+        }
+        return null;
+    }
+
 
     public static double getTotalComida(TipoAlimentacion tipoAlimentacion) {
         double total = 0;
