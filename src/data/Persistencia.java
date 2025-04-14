@@ -27,12 +27,12 @@ public class Persistencia {
         sectores.add(new Sector(4, -26.257250, -65.523514, 10, TipoAlimentacion.CARNIVORO, raul));
     }
     
-    private static void inicializarAnimales() throws InvalidPropertiesFormatException {
+   /* private static void inicializarAnimales() throws InvalidPropertiesFormatException {
         animales.add(new Carnivoro(5,250,especies.get(0), sectores.get(1), paises.get(0)));
         animales.add(new Carnivoro(2,180,especies.get(2), sectores.get(3), paises.get(2)));
         animales.add(new Herbivoro(3, 1020,especies.get(1), sectores.get(0), 170, paises.get(4)));
         animales.add(new Herbivoro(8, 3800,especies.get(3), sectores.get(2), 320, paises.get(1)));
-    }
+    }*/
     
     private static void inicializarPaises(){
         paises.add(new Pais("Madagascar","450"));
@@ -46,7 +46,7 @@ public class Persistencia {
         inicializarEspecies();
         inicializarSectores();
         inicializarPaises();
-        inicializarAnimales();
+      /*  inicializarAnimales();*/
     }
 
     public static ArrayList<Mamifero> getAnimales() {
@@ -61,6 +61,38 @@ public class Persistencia {
         return especies;
     }
 
+    public static ArrayList<Pais> getPaises() {
+        return paises;
+    }
+    
+    public static void agregarAnimal(Mamifero mamifero){
+        animales.add(mamifero);       
+        System.out.println(mamifero);
+    }
+    
+    public static Especie buscarEspeciePorNombre(String nombre) {
+    for (Especie e : especies) {
+        if (e.getNombre().equalsIgnoreCase(nombre)) return e;
+    }
+    return null;
+}
+
+    public static Sector buscarSectorPorNumero(String numeroStr) {
+    int numero = Integer.parseInt(numeroStr); // convertir a int
+    for (Sector s : sectores) {
+        if (s.getNumero() == numero) return s;
+    }
+    return null;
+}
+
+    public static Pais buscarPaisPorNombre(String nombre) {
+        for (Pais p : paises) {
+            if (p.getNombre().equalsIgnoreCase(nombre)) return p;
+        }
+        return null;
+    }
+
+
     public static double getTotalComida(TipoAlimentacion tipoAlimentacion) {
         double total = 0;
         for(Mamifero animal : animales){
@@ -68,4 +100,5 @@ public class Persistencia {
         }
         return total;
     }
+    
 }
